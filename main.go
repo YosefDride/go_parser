@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"./Config"
+	"github.com/YosefDride/go_parser/config"
 	"gopkg.in/yaml.v2"
 )
 
