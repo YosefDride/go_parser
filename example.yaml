@@ -1,9 +1,43 @@
-field1: Value 1
-field2: 42
-field3: damn
-field4:
-- item1
-- item2
-field5:
-  nestedField1: Nested Value 1
-  nestedField2: Nested Value 2
+paths:
+  cam1:
+    source: rtsp://192.165.1.21:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/0/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam1sd:
+    source: rtsp://192.165.1.21:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream
+  cam2:
+    source: rtsp://192.165.2.22:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/1/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam2sd:
+    source: rtsp://192.165.2.22:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream
+  cam3:
+    source: rtsp://192.165.3.23:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/2/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam3sd:
+    source: rtsp://192.165.3.23:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream
+  cam4:
+    source: rtsp://192.165.4.24:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/3/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam4sd:
+    source: rtsp://192.165.4.24:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream
+  cam6:
+    source: rtsp://192.165.6.26:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/5/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam6sd:
+    source: rtsp://192.165.6.26:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream
+  cam8:
+    source: rtsp://192.165.5.25:554/user=admin_password=tlJwpbo6_channel=1_stream=0.sdp?real_stream
+    runOnReady: ffmpeg -rtsp_transport tcp -use_wallclock_as_timestamps 1 -nostdin -i rtsp://localhost:$RTSP_PORT/$RTSP_PATH -c copy -f segment -segment_time 60 -reset_timestamps 0 -segment_format mp4 /var/servision/svr_data/dride/tmpffmpeg/4/%d.mp4
+    runOnReadyRestart: yes
+    runOnDemandRestart: yes
+  cam8sd:
+    source: rtsp://192.165.5.25:554/user=admin_password=tlJwpbo6_channel=1_stream=1.sdp?real_stream

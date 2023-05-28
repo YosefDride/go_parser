@@ -23,7 +23,8 @@ func readYAMLFile(filePath string) (map[string]interface{}, error) {
 	return data, nil
 }
 
-func updateFieldValue(filePath string, key string, newValue interface{}) error {
+
+func parse(filePath string, key string, replaceString string) error {
 	data, err := readYAMLFile(filePath)
 	if err != nil {
 		return err
@@ -34,8 +35,8 @@ func updateFieldValue(filePath string, key string, newValue interface{}) error {
 		return fmt.Errorf("key not found: %s", key)
 	}
 
-	// Update the value for the key
-	data[key] = newValue
+	// Update the value for the key with the replaceString
+	data[key] = replaceString
 
 	err = writeYAMLFile(filePath, data)
 	if err != nil {
@@ -44,6 +45,7 @@ func updateFieldValue(filePath string, key string, newValue interface{}) error {
 
 	return nil
 }
+
 
 func writeYAMLFile(filePath string, data map[string]interface{}) error {
 	yamlData, err := yaml.Marshal(data)
@@ -63,11 +65,18 @@ func main() {
 
     filePath := Config.FilePath
 	fmt.Println(filePath)
-	err := updateFieldValue(filePath, "field3", "damn")
-	if err != nil {
-		log.Fatalf("Failed to update field value: %v", err)
-	}
-	fmt.Println("YAML file modified successfully.")
+	key := "paths.cam1.source"
+	replaceString := "NEWIP"
+	time.Sleep(2 * time.Second)
 
-	time.Sleep(10 * time.Second)
+	err := parse(filePath, key, replaceString)
+	fmt.Println(err)
+	time.Sleep(2 * time.Second)
+
+	if err != nil {
+		log.Fatalf("Failed to parse file: %v", err)
+	}
+
+	fmt.Println("YAML file parsed successfully.")
+	time.Sleep(5 * time.Second)
 }
